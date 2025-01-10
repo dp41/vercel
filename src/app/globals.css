@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #F2F2F2;
+    --foreground: #5B472E;
+  }
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 95%;
+    --foreground: 32 32% 27%;
+    --card: 0 0% 100%;
+    --card-foreground: 32 32% 27%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 32 32% 27%;
+    --primary: 11 89% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 32 32% 27%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0, 0%, 95%;
+    --muted-foreground: 32 32% 27%;
+    --accent: 30 24% 69%;
+    --accent-foreground: 32 32% 27%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 24% 69%;
+    --input: 30 24% 69%;
+    --ring: 11 89% 55%;
+    --chart-1: 11 89% 55%;
+    --chart-2: 32 32% 27%;
+    --chart-3: 27 27% 45%;
+    --chart-4: 30 24% 69%;
+    --chart-5: 0 0% 95%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 95%;
+    --sidebar-foreground: 32 32% 27%;
+    --sidebar-primary: 11 89% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 11, 90%, 65%;
+    --sidebar-accent-foreground: 32 32% 27%;
+    --sidebar-border: 30 24% 69%;
+    --sidebar-ring: 11 89% 55%;
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+}
+
+@page {
+  size: A4;
+  margin: 10mm; /* Ensure enough margin for content */
+}
+
+
+/*!* Custom print styles *!*/
+
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    width: 100%;
+  }
+
+  body * {
+    visibility: hidden; /* Hide all elements by default */
+  }
+
+  .printable, .printable * {
+    visibility: visible; /* Only show printable area */
+  }
+
+  .printable {
+    margin: 0 auto; /* Center content */
+    padding: 10mm; /* Add padding for readability */
+    width: 100%; /* Full width for print */
+    max-width: 100%; /* Ensure it spans across small screens */
+    height: auto; /* Allow content to grow */
+    box-shadow: none; /* Remove shadows */
+    background-color: #fff; /* White background for print */
+    overflow: hidden; /* Hide scrollbars */
+    page-break-before: always; /* Start content on a new page */
+    page-break-after: auto; /* Allow page breaks */
+  }
+
+  /* Page Break Classes */
+  .page-break {
+    page-break-before: always;
+    page-break-after: auto; /* Allows continuation on a new page */
+  }
+
+  /* Table Borders for Print */
+  .printable table {
+    width: 100%;
+    border-collapse: collapse; /* Ensure borders are continuous */
+  }
+
+  .printable th, .printable td {
+    border: 1px solid #000; /* Table borders */
+    padding: 8px;
+    text-align: left;
+  }
+
+  .printable thead {
+    background-color: #f2f2f2;
+  }
+
+  /* Prevent breaking table rows in the middle */
+  .printable table, .printable tr, .printable td {
+    page-break-inside: avoid;
+  }
+
+  .printable tr {
+    page-break-before: auto; /* Don't break between rows */
+  }
+
+  .printable .page-break {
+    page-break-before: always;
+  }
+}

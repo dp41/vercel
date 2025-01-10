@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6070c5a5-81d1-4283-a0bd-1cff1637cdc7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/CreateInvoice.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebase.json" beforeDir="false" afterPath="$PROJECT_DIR$/firebase.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handlers/handleDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/handleDB.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(main)/dashboard/clients/[id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(main)/dashboard/clients/[id]/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(main)/dashboard/clients/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(main)/dashboard/clients/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(main)/dashboard/generate-invoice/create/page.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(main)/dashboard/generate-invoice/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(main)/dashboard/generate-invoice/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(main)/dashboard/generate-invoice/print/page.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AppSidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppSidebar.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2qLZRF9gfIVPYlRxhlp99jLYUoZ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/divyapatel/Documents/Airex Rail Cargo Docs/airex-rail-cargo/src/components&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/app/dashboard/payment-records" />
+      <recent name="$PROJECT_DIR$/src/app/dashboard/tracking" />
+      <recent name="$PROJECT_DIR$/public/Images" />
+      <recent name="$PROJECT_DIR$/public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/(main)/dashboard/clients/[id]" />
+      <recent name="$PROJECT_DIR$/src/app/(main)/dashboard/clients/client-details/[id]" />
+      <recent name="$PROJECT_DIR$/src/app/(main)/dashboard" />
+      <recent name="$PROJECT_DIR$/src/app/(main)/dashboard/[id]" />
+      <recent name="$PROJECT_DIR$/src/app/(main)" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.22855.79" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6070c5a5-81d1-4283-a0bd-1cff1637cdc7" name="Changes" comment="" />
+      <created>1734443808176</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1734443808176</updated>
+      <workItem from="1734443811145" duration="14299000" />
+      <workItem from="1734501718672" duration="8719000" />
+      <workItem from="1734540203148" duration="6798000" />
+      <workItem from="1734614542132" duration="13975000" />
+      <workItem from="1734680861530" duration="28019000" />
+      <workItem from="1734770843362" duration="10200000" />
+      <workItem from="1734801966689" duration="7627000" />
+      <workItem from="1734874801157" duration="13712000" />
+      <workItem from="1734935373985" duration="20936000" />
+      <workItem from="1735034183190" duration="6619000" />
+      <workItem from="1735056528533" duration="8915000" />
+      <workItem from="1735130040623" duration="4018000" />
+      <workItem from="1735145219978" duration="114000" />
+      <workItem from="1735194676643" duration="251000" />
+      <workItem from="1735291470819" duration="25932000" />
+      <workItem from="1735377115283" duration="6283000" />
+      <workItem from="1735412059056" duration="259000" />
+      <workItem from="1735456236016" duration="9649000" />
+      <workItem from="1735468482721" duration="2886000" />
+      <workItem from="1735541272349" duration="27188000" />
+      <workItem from="1735618207891" duration="1972000" />
+      <workItem from="1735663044493" duration="3947000" />
+      <workItem from="1735721628580" duration="75000" />
+      <workItem from="1735722434021" duration="22697000" />
+      <workItem from="1735791956597" duration="1979000" />
+      <workItem from="1735800460062" duration="4773000" />
+      <workItem from="1735842113137" duration="3370000" />
+      <workItem from="1735886942710" duration="9807000" />
+      <workItem from="1735915576567" duration="9236000" />
+      <workItem from="1735971339380" duration="4209000" />
+      <workItem from="1736142499037" duration="1450000" />
+      <workItem from="1736242696995" duration="1050000" />
+      <workItem from="1736249333799" duration="614000" />
+      <workItem from="1736250063708" duration="17891000" />
+      <workItem from="1736314585292" duration="15791000" />
+      <workItem from="1736343967531" duration="700000" />
+      <workItem from="1736348348893" duration="242000" />
+      <workItem from="1736355591572" duration="624000" />
+      <workItem from="1736356409404" duration="437000" />
+      <workItem from="1736357153531" duration="8913000" />
+      <workItem from="1736401258561" duration="2490000" />
+      <workItem from="1736414763355" duration="20036000" />
+      <workItem from="1736487640062" duration="489000" />
+      <workItem from="1736505521959" duration="1248000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/AppSidebar.jsx</url>
+          <line>1</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
