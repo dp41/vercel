@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6070c5a5-81d1-4283-a0bd-1cff1637cdc7" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/components/CreateInvoice.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/eslint.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.mjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firebase.json" beforeDir="false" />
@@ -130,7 +131,7 @@
       <workItem from="1736414763355" duration="20036000" />
       <workItem from="1736487640062" duration="489000" />
       <workItem from="1736505521959" duration="1248000" />
-      <workItem from="1736507973722" duration="1465000" />
+      <workItem from="1736507973722" duration="1671000" />
     </task>
     <servers />
   </component>
