@@ -20,7 +20,6 @@
       <change beforePath="$PROJECT_DIR$/src/app/(main)/dashboard/generate-invoice/print/page.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AppSidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppSidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/firebase.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +130,7 @@
       <workItem from="1736414763355" duration="20036000" />
       <workItem from="1736487640062" duration="489000" />
       <workItem from="1736505521959" duration="1248000" />
-      <workItem from="1736507973722" duration="650000" />
+      <workItem from="1736507973722" duration="1465000" />
     </task>
     <servers />
   </component>
