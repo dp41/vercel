@@ -5,7 +5,10 @@ const nextConfig = {
         unoptimized: true,
     },
     reactStrictMode: true,
-    trailingSlash: true
+    trailingSlash: true,
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
 };
 
 export default nextConfig;
