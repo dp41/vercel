@@ -15,7 +15,7 @@ import {bookingModel} from "@/models/bookingModel";
 import {
     checkBookingExistsByDocketNo,
     checkClientExistsById,
-    fetchAgents, fetchClients,
+    fetchAgents,
     saveBookingData,
     saveInvoiceData, saveProfitData, updateAgentData
 } from "@/Handlers/handleDB";
@@ -25,7 +25,6 @@ import {profitModel} from "@/models/profitModel";
 
 const NewBooking = () => {
     const [open, setOpen] = useState(false)
-    const [leaseOpen, setLeaseOpen] = useState(false)
     const isUpdating = useRef(false); // Flag to prevent recursion
     const [isLoading, setIsLoading] = useState(false);
     const [agents, setAgents] = useState([]);
@@ -35,18 +34,20 @@ const NewBooking = () => {
             clientId: '',
             docketNo: '',
             bookingDate: '',
+            pickupDate:'',
             source: '',
             destination: '',
             agentId: '',
-            agentAmount: '',
             consignor: '',
             consignee: '',
             transportationMode: '',
-            leaserName: '',
+            trainNumber: '',
             leaseNumber: '',
-            transporterName: '',
+            railwayReceipt:'',
+            roadTransporterName: '',
             vehicleNumber: '',
             awbNo: '',
+            airTransporterName:'',
             eWayBillNo: '',
             okwardDeliveryAmount: '',
             consigneeName: '',
@@ -55,7 +56,7 @@ const NewBooking = () => {
             state:'',
             stateCode: '',
             gstNo: '',
-            payment: '',
+            paymentDoneBy: '',
             paymentStatus: '',
             items: [{ docketNo: '', boxQuantity: 0, chargedWeight: 0, ratePerKg: 0, netValue: 0, sgst: 0, cgst: 0, igst: 0}],
             bookingCharge: '',
@@ -74,15 +75,11 @@ const NewBooking = () => {
             totalIgst: '',
             hasCommission: false,
             hasODA: false,
-            hasAgent: false
+            hasAgent: false,
+            hasRailwayReceipt: false
         },
     })
 
-    const leases = [
-        { name: "Express 1", label: "1" },
-        { name: "Superfast 2", label: "2" },
-        { name: "Local 3", label: "3" },
-    ]
 
     const { fields, append, remove } = useFieldArray({
         control: form.control,
@@ -99,9 +96,9 @@ const NewBooking = () => {
         if(await checkClientExistsById(dataObj.clientId)){
 
             if(!await checkBookingExistsByDocketNo(data.docketNo)){
-                if(data.hasAgent){
-                    await updateAgentData(data.agentId, data);
-                }
+                // if(data.hasAgent){
+                //     await updateAgentData(data.agentId, data);
+                // }
                 await saveBookingData(dataObj);
                 await saveProfitData(profitData);
 
@@ -261,7 +258,7 @@ const NewBooking = () => {
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 
                     {/*client id, docket no, booking date*/}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         <FormField
                             control={form.control}
                             name="clientId"
@@ -305,6 +302,20 @@ const NewBooking = () => {
                                         <Input type="date" placeholder="dd/mm/yyyy" {...field} />
                                     </FormControl>
                                     <FormMessage>{form.formState.errors.bookingDate?.message}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="pickupDate"
+                            rules={{required: "Pickup Date is required"}}
+                            render={({field}) => (
+                                <FormItem>
+                                    <FormLabel>Pickup Date</FormLabel>
+                                    <FormControl>
+                                        <Input type="date" placeholder="dd/mm/yyyy" {...field} />
+                                    </FormControl>
+                                    <FormMessage>{form.formState.errors.pickupDate?.message}</FormMessage>
                                 </FormItem>
                             )}
                         />
@@ -419,62 +430,15 @@ const NewBooking = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <FormField
                                 control={form.control}
-                                name="leaseName"
-                                rules={{required: "Please select a Lease"}}
+                                name="trainNumber"
+                                rules={{required: "Please enter valid Lease Number"}}
                                 render={({field}) => (
                                     <FormItem>
-                                        <FormLabel>Lease Name</FormLabel>
-                                        <Popover open={leaseOpen} onOpenChange={setLeaseOpen}>
-                                            <PopoverTrigger asChild>
-                                                <FormControl>
-                                                    <Button
-                                                        variant="outline"
-                                                        role="combobox"
-                                                        className={cn(
-                                                            "w-full justify-between",
-                                                            !field.value && "text-muted-foreground"
-                                                        )}
-                                                    >
-                                                        {field.value
-                                                            ? leases.find((lease) => lease.name === field.value)?.name
-                                                            : "Select Lease"}
-                                                        <ChevronsUpDown
-                                                            className="ml-2 h-4 w-4 shrink-0 opacity-50"/>
-                                                    </Button>
-                                                </FormControl>
-                                            </PopoverTrigger>
-                                            <PopoverContent className="w-full p-0">
-                                                <Command>
-                                                    <CommandList>
-                                                        <CommandInput placeholder="Search lease..."/>
-                                                        <CommandEmpty>No lease found.</CommandEmpty>
-                                                        <CommandGroup>
-                                                            {leases.map((lease) => (
-                                                                <CommandItem
-                                                                    value={lease.name}
-                                                                    key={lease.label}
-                                                                    onSelect={() => {
-                                                                        form.setValue("leaseName", lease.name)
-                                                                        setLeaseOpen(false)
-                                                                    }}
-                                                                >
-                                                                    <CheckIcon
-                                                                        className={cn(
-                                                                            "mr-2 h-4 w-4",
-                                                                            lease.name === field.value
-                                                                                ? "opacity-100"
-                                                                                : "opacity-0"
-                                                                        )}
-                                                                    />
-                                                                    {lease.name}
-                                                                </CommandItem>
-                                                            ))}
-                                                        </CommandGroup>
-                                                    </CommandList>
-                                                </Command>
-                                            </PopoverContent>
-                                        </Popover>
-                                        <FormMessage>{form.formState.errors.leaseName?.message}</FormMessage>
+                                        <FormLabel>Train Number</FormLabel>
+                                        <FormControl>
+                                            <Input {...field} className="w-full"/>
+                                        </FormControl>
+                                        <FormMessage>{form.formState.errors.trainNumber?.message}</FormMessage>
                                     </FormItem>
                                 )}
                             />
@@ -493,6 +457,50 @@ const NewBooking = () => {
                                     </FormItem>
                                 )}
                             />
+
+                            <FormField
+                                control={form.control}
+                                name="hasRailwayReceipt"
+                                render={({field}) => (
+                                    <FormItem
+                                        className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                                        <FormControl>
+                                            <Checkbox
+                                                checked={field.value}
+                                                onCheckedChange={field.onChange}
+                                            />
+                                        </FormControl>
+                                        <div className="space-y-1 leading-none">
+                                            <FormLabel>
+                                                Railway Receipt
+                                            </FormLabel>
+                                            <FormDescription>
+                                                If Applicable
+                                            </FormDescription>
+                                        </div>
+                                    </FormItem>
+                                )}
+                            />
+
+                            {form.watch().hasRailwayReceipt && (
+                                <FormField
+                                    control={form.control}
+                                    name="railwayReceipt"
+                                    render={({field}) => (
+                                        <FormItem>
+                                            <FormLabel>Railway Receipt</FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    type="number"
+                                                    placeholder="Railway Receipt"
+                                                    {...field}
+                                                    onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                                                />
+                                            </FormControl>
+                                        </FormItem>
+                                    )}
+                                />
+                            )}
                         </div>
                     )}
 
@@ -501,7 +509,7 @@ const NewBooking = () => {
 
                             <FormField
                                 control={form.control}
-                                name="trasporterName"
+                                name="roadTransporterName"
                                 rules={{required: "Transporter/Broker Name is required"}}
                                 render={({field}) => (
                                     <FormItem>
@@ -509,7 +517,7 @@ const NewBooking = () => {
                                         <FormControl>
                                             <Input value={field.value || ""} placeholder="Transporter/Broker Name "  {...field} className="w-full"/>
                                         </FormControl>
-                                        <FormMessage>{form.formState.errors.trasporterName?.message}</FormMessage>
+                                        <FormMessage>{form.formState.errors.roadTransporterName?.message}</FormMessage>
                                     </FormItem>
                                 )}
                             />
@@ -531,6 +539,22 @@ const NewBooking = () => {
                     )}
 
                     {form.watch("transportationMode") === "By Air" && (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+
+                        <FormField
+                            control={form.control}
+                            name="airTransporterName"
+                            rules={{required: "Transporter/Broker Name is required"}}
+                            render={({field}) => (
+                                <FormItem>
+                                    <FormLabel>Transporter/Broker Name</FormLabel>
+                                    <FormControl>
+                                        <Input value={field.value || ""} placeholder="Transporter/Broker Name "  {...field} className="w-full"/>
+                                    </FormControl>
+                                    <FormMessage>{form.formState.errors.airTransporterName?.message}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
                         <FormField
                             control={form.control}
                             name="awbNo"
@@ -548,6 +572,7 @@ const NewBooking = () => {
                                 </FormItem>
                             )}
                         />
+                        </div>
                     )}
 
                     {/*Consignee Details*/}
@@ -598,7 +623,7 @@ const NewBooking = () => {
                                         <Input placeholder="Ex: 24ABCDE1234F1Z5" type="text" {...field}
                                                className="w-full"/>
                                     </FormControl>
-                                    <FormMessage>{form.formState.errors.state?.message}</FormMessage>
+                                    <FormMessage>{form.formState.errors.gstNo?.message}</FormMessage>
                                 </FormItem>
                             )}
                         />
@@ -1082,25 +1107,23 @@ const NewBooking = () => {
                                     </FormItem>
                                 )}
                             />
-                            <FormField
-                                control={form.control}
-                                name="agentAmount"
-                                rules={{required: "Agent Amount is required"}}
-                                render={({field}) => (
-                                    <FormItem>
-                                        <FormLabel>Agent Amount</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                type="number"
-                                                placeholder="Agent Amount"
-                                                {...field}
-                                                onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                                            />
-                                        </FormControl>
-                                        <FormMessage>{form.formState.errors.okwardDeliveryAmount?.message}</FormMessage>
-                                    </FormItem>
-                                )}
-                            />
+                            {/*<FormField*/}
+                            {/*    control={form.control}*/}
+                            {/*    name="agentAmount"*/}
+                            {/*    render={({field}) => (*/}
+                            {/*        <FormItem>*/}
+                            {/*            <FormLabel>Agent Amount</FormLabel>*/}
+                            {/*            <FormControl>*/}
+                            {/*                <Input*/}
+                            {/*                    type="number"*/}
+                            {/*                    placeholder="Agent Amount"*/}
+                            {/*                    {...field}*/}
+                            {/*                    onChange={(e) => field.onChange(parseFloat(e.target.value))}*/}
+                            {/*                />*/}
+                            {/*            </FormControl>*/}
+                            {/*        </FormItem>*/}
+                            {/*    )}*/}
+                            {/*/>*/}
                         </div>
                     )}
 
@@ -1140,11 +1163,11 @@ const NewBooking = () => {
 
                         <FormField
                             control={form.control}
-                            name="payment"
+                            name="paymentDoneBy"
                             rules={{required: "Please select payment"}}
                             render={({field}) => (
                                 <FormItem className="space-y-3">
-                                    <FormLabel>Payment</FormLabel>
+                                    <FormLabel>Payment done by</FormLabel>
                                     <FormControl>
                                         <RadioGroup
                                             onValueChange={field.onChange}
@@ -1165,7 +1188,7 @@ const NewBooking = () => {
                                             </FormItem>
                                         </RadioGroup>
                                     </FormControl>
-                                    <FormMessage>{form.formState.errors.payment?.message}</FormMessage>
+                                    <FormMessage>{form.formState.errors.paymentDoneBy?.message}</FormMessage>
                                 </FormItem>
                             )}
                         />

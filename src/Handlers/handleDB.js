@@ -1,21 +1,7 @@
 // Initialize Firebase
 
 import {collection, getDocs, doc, getDoc, setDoc, query, orderBy, arrayUnion, updateDoc, serverTimestamp,limit} from "firebase/firestore";
-import {db, auth, onAuthStateChanged } from "@/lib/firebase";
-
-// Utility function to get the logged-in user's UID
-const getUserUID = async () => {
-  return new Promise((resolve, reject) => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      unsubscribe(); // Unsubscribe after the state is resolved
-      if (user) {
-        resolve(user.uid);
-      } else {
-        reject(new Error("No user is logged in"));
-      }
-    });
-  });
-};
+import {db, auth, onAuthStateChanged, getUserUID} from "@/lib/firebase";
 
 const userUID = await getUserUID();
 
@@ -210,9 +196,13 @@ export const updateAgentData = async (id, data) => {
         const agentRef = doc(db, `users/${userUID}/agents`, id);
 
         await updateDoc(agentRef, {
-            salaryAmount: arrayUnion({
-                amount: data.agentAmount,
-                clientId: data.clientId,
+            deliveries: arrayUnion({
+                docketNo: data.docketNo,
+                noOfBoxes: data.noOfBoxes,
+                pickupDate: data.pickupDate,
+                paymentDate: data.paymentDate,
+                paymentAmount: data.paymentAmount,
+                modeOfPayment: data.modeOfPayment
             }),
         });
 
@@ -226,36 +216,26 @@ export const updateClientData = async (updatedData) => {
     try {
         const bookingRef = doc(db, `users/${userUID}/bookings`, updatedData.docketNo);
 
-        // Fetch the current booking data to get the existing items
+        // Fetch the current booking data to ensure the document exists
         const bookingDoc = await getDoc(bookingRef);
 
         if (!bookingDoc.exists()) {
             throw new Error("Booking does not exist.");
         }
 
-        const currentData = bookingDoc.data();
-
-        // Modify the 'partyInvoiceNo' for the specific item
-        const updatedItems = currentData.items.map(item => {
-            const updatedItem = updatedData.items.find(updatedItem => updatedItem.docketNo === item.docketNo);
-            if (updatedItem) {
-                // Update the partyInvoiceNo for the matched item
-                return { ...item, partyInvoiceNo: updatedItem.partyInvoiceNo };
-            }
-            return item; // No change if no match is found
-        });
-
-        // Update the entire 'items' array in Firestore
+        // Directly replace the 'items' array with 'updatedData.items'
         await updateDoc(bookingRef, {
-            items: updatedItems
+            items: updatedData.items,
         });
 
-        console.log("Client data updated successfully");
-
+        console.log("Client data updated successfully with new items array.");
     } catch (error) {
         console.error("Error updating client data:", error);
     }
-}
+};
+
+
+
 
 // Fetch the last added invoice document
 export const getLastAddedDocument = async () => {
@@ -341,6 +321,21 @@ export const fetchClientDataByClientId = async (clientId) => {
         }
     } catch (error) {
         console.error("Error fetching client data:", error);
+    }
+}
+
+export const fetchAgentDataByAgentId = async (agentId) => {
+    try {
+        const agentRef = doc(db, `users/${userUID}/agents`, agentId);
+        const agentSnapshot = await getDoc(agentRef);
+        if (agentSnapshot.exists()) {
+            return agentSnapshot.data();  // Return the agent data
+        } else {
+            console.log("Agent document not found!");
+            return null;
+        }
+    } catch (error) {
+        console.error("Error fetching agent data:", error);
     }
 }
 // Fetch all agents for the logged-in user

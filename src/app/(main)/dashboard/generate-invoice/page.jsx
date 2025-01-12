@@ -25,8 +25,7 @@ const Page = () => {
     };
 
     const filterInvoices = (invoice) => {
-        const matchesQuery =
-            invoice.invoiceNo.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesQuery = invoice.invoiceNo.toLowerCase().includes(searchQuery.toLowerCase());
 
         const matchesDate =
             !selectedDateRange ||

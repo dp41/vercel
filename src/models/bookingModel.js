@@ -48,14 +48,16 @@ export const bookingModel = (data) => {
     const transportationMode = filterNullValues({
         mode: data.transportationMode,
         train: filterNullValues({
-            leaseName: data.leaseName,
+            trainNumber: data.trainNumber,
             leaseNumber: data.leaseNumber,
+            railwayReceipt: data.railwayReceipt
         }),
         flight: filterNullValues({
+            airTransporterName: data.airTransporterName,
             awbNo: data.awbNo,
         }),
-        driver: filterNullValues({
-            transporterName: data.transporterName,
+        road: filterNullValues({
+            roadTransporterName: data.roadTransporterName,
             vehicleNo: data.vehicleNumber,
         }),
     });
@@ -89,12 +91,13 @@ export const bookingModel = (data) => {
         clientId: data.clientId,
         docketNo: data.docketNo,
         bookingDate: data.bookingDate,
+        pickupDate: data.pickupDate,
         source: data.source,
         destination: data.destination,
         agentName: data.agentName,
         consignee: data.consignee,
         consignor: data.consignor,
-        payment: data.payment,
+        paymentDoneBy: data.paymentDoneBy,
         paymentStatus: data.paymentStatus,
         eWayBillNo: data.eWayBillNo,
         okwardDeliveryAmount: data.okwardDeliveryAmount,

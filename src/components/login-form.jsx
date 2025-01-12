@@ -15,6 +15,7 @@ import {useToast} from "@/hooks/use-toast";
 import Loader from "@/components/Loader";
 import {auth} from "@/lib/firebase";
 import {  signInWithEmailAndPassword   } from 'firebase/auth';
+import {useAuth} from "@/lib/AuthContext";
 
 export function LoginForm() {
 
@@ -32,9 +33,10 @@ export function LoginForm() {
         try {
             console.log("Connecting to Firebase...");
             signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
+                .then(async (userCredential) => {
                     const user = userCredential.user;
-                    document.cookie = "isLoggedIn=true; path=/; max-age=43200";
+                    const token = await user.getIdToken();
+                    document.cookie = `token=${token}; isLoggedIn=true; path=/; max-age=43200 HttpOnly`;
                     router.push('/dashboard');
                 }) .catch((error) => {
                 alert(error.message);

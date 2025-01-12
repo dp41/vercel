@@ -26,6 +26,7 @@ const page = () => {
         invoiceDate: '',
         invoiceNo: '',
         bookingDate: '',
+        pickupDate:'',
         transportationMode: '',
         consignor: '',
         consignee: '',
@@ -72,6 +73,7 @@ const page = () => {
                 invoiceDate: new Date(),
                 invoiceNo: data.invoiceNo,
                 bookingDate: data.bookingDate,
+                pickupDate: data.pickupDate,
                 transportationMode: data.transportationMode.mode,
                 consignor: data.consignor,
                 consignee: data.consignee,
@@ -113,13 +115,13 @@ const page = () => {
         }
     }
 
-    const handleEditPartyInvoice = (index, newInvoiceNo) => {
+    const handleEditPartyInvoice  = async (index, newInvoiceNo) => {
         const updatedItems = [...invoiceData.items];
+        console.log(updatedItems,index)
         updatedItems[index].partyInvoiceNo = newInvoiceNo;
         setInvoiceData({ ...invoiceData, items: updatedItems });
-        // console.log(updatedItems)
-
     };
+
 
     const handlePrint = () => {
         window.print();
@@ -134,9 +136,6 @@ const page = () => {
         return result;
     }
 
-    const handleEdit = () => {
-        setIsEditing(true);
-    }
     return (
         <div className="relative p-4 sm:p-6 lg:p-8">
             <CardTitle className="text-2xl sm:text-3xl font-bold mb-4">Generate Invoice</CardTitle>
@@ -296,7 +295,7 @@ const page = () => {
                                                             )}
                                                         </TableCell>
                                                         <TableCell
-                                                            className="border">{invoiceData.bookingDate}</TableCell>
+                                                            className="border">{invoiceData.pickupDate}</TableCell>
                                                         <TableCell className="border">{item.boxQuantity}</TableCell>
                                                         <TableCell className="border">{item.chargedWeight}</TableCell>
                                                         <TableCell className="border">{item.ratePerKg}</TableCell>

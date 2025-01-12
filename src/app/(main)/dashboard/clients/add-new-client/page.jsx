@@ -18,6 +18,7 @@ const AddNewClient = () => {
             email: "",
             contactNo: "",
             company: "",
+            gstNo: "",
             address: "",
         },
         mode: "onBlur",
@@ -102,6 +103,29 @@ const AddNewClient = () => {
                                         <Input type="text" placeholder="Ex: John Doe" {...field} />
                                     </FormControl>
                                     <FormMessage>{form.formState.errors.name?.message}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
+
+                        {/*GST No*/}
+                        <FormField
+                            rules={{
+                                required: "GST No is required",
+                                pattern: {
+                                    value: /^[0-9]{2}[A-Z0-9]{10}[1-9A-Z]Z[A-Z0-9]{1}$/,
+                                    message: "Invalid GST No"
+                                },
+                            }}
+                            control={form.control}
+                            name="gstNo"
+                            render={({field}) => (
+                                <FormItem>
+                                    <FormLabel>GST No</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Ex: 24ABCDE1234F1Z5" type="text" {...field}
+                                               className="w-full"/>
+                                    </FormControl>
+                                    <FormMessage>{form.formState.errors.gstNo?.message}</FormMessage>
                                 </FormItem>
                             )}
                         />

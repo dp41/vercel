@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "out",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/dashboard/clients/**",
+        "destination": "/dashboard/clients/[id]/index.html"
+      }
+    ]
+  },
+}

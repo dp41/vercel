@@ -9,7 +9,7 @@ import {
     Trash2,
     MapPin,
     Plus,
-    Clock, CheckCircle, XCircle, Download
+    Clock, CheckCircle, EllipsisVertical, Download
 } from "lucide-react";
 import { Button } from "@/components/ui/button"; // Replace with ShadCN Button
 import { Table, TableHeader, TableRow, TableCell, TableBody } from "@/components/ui/table";
@@ -129,32 +129,16 @@ const Page = () => {
                             <Table className="w-full table-auto border-collapse">
                                 <TableHeader>
                                     <TableRow>
-                                        <TableCell className="text-left font-semibold text-gray-600 py-2 px-4">
-                                            Invoices
-                                        </TableCell>
-                                        <TableCell className="text-left font-semibold text-gray-600 py-2 px-4">
-                                            Status
-                                        </TableCell>
-                                        <TableCell className="text-left font-semibold text-gray-600 py-2 px-4">
-                                            Docket No
-                                        </TableCell>
-                                        <TableCell className="text-right font-semibold text-gray-600 py-2 px-4">
-                                            Amount
-                                        </TableCell>
-                                        <TableCell className="text-center font-semibold text-gray-600 py-2 px-4">
-                                            Download
-                                        </TableCell>
-                                        <TableCell className="text-center font-semibold text-gray-600 py-2 px-4">
-                                            Manage
-                                        </TableCell>
+                                        <TableCell className="text-left font-semibold text-gray-600 py-2 px-4">Invoices</TableCell>
+                                        <TableCell className="text-left font-semibold text-gray-600 py-2 px-4">Status</TableCell>
+                                        <TableCell className="text-left font-semibold text-gray-600 py-2 px-4">Docket No</TableCell>
+                                        <TableCell className="text-right font-semibold text-gray-600 py-2 px-4">Amount</TableCell>
+                                        <TableCell className="text-center font-semibold text-gray-600 py-2 px-4">Download</TableCell>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
                                     {clientData.invoices.map((invoice, index) => (
-                                        <TableRow
-                                            key={index}
-                                            className="hover:bg-gray-50 transition-colors duration-200"
-                                        >
+                                        <TableRow key={index} className="hover:bg-gray-50 transition-colors duration-200">
                                             <TableCell className="py-3 px-4">{invoice.invoiceNo}</TableCell>
                                             <TableCell className="py-3 px-4">
                     <span
@@ -166,9 +150,9 @@ const Page = () => {
                                     : "bg-red-500"
                         }`}
                     >
-                      {invoice.paymentStatus === "pending" && (
-                          <Clock className="mr-2 mt-1" size={15} />
-                      )}
+                        {invoice.paymentStatus === "pending" && (
+                            <Clock className="mr-2 mt-1" size={15} />
+                        )}
                         {invoice.paymentStatus === "received" && (
                             <CheckCircle className="mr-2 mt-1" size={15} />
                         )}
@@ -176,14 +160,17 @@ const Page = () => {
                     </span>
                                             </TableCell>
                                             <TableCell className="py-3 px-4">{invoice.docketNo}</TableCell>
-                                            <TableCell className="py-3 px-4 text-right">
-                                                ₹{invoice.paymentAmount}
+                                            <TableCell className="py-3 px-4 text-right">₹{invoice.paymentAmount}</TableCell>
+                                            <TableCell className="py-3 px-4">
+                                                <div className="flex justify-center items-center">
+                                                    <Download className="w-4 h-4 text-red-500 cursor-pointer" />
+                                                </div>
                                             </TableCell>
-                                            <TableCell className="text-right py-3 px-4">
-                                                <Download className="w-4 h-4 text-red-500 cursor-pointer" />
-                                            </TableCell>
-                                            <TableCell className="text-center py-3 px-4">
-                                                <Trash2 className="w-4 h-4 text-red-500 cursor-pointer" />
+                                            <TableCell className="py-3 px-4">
+                                                <div className="flex justify-center items-center">
+                                                    {/*<Trash2 className="w-4 h-4 text-red-500 cursor-pointer" />*/}
+                                                    <EllipsisVertical className="w-4 h-4 text-red-500 cursor-pointer" />
+                                                </div>
                                             </TableCell>
                                         </TableRow>
                                     ))}

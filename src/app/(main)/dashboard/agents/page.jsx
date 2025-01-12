@@ -14,6 +14,7 @@ import {fetchAgents} from "@/Handlers/handleDB";
 import { Input } from "@/components/ui/input";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Loader from "@/components/Loader";
+import Link from "next/link";
 
 const Clients = () => {
     const [agents, setAgents] = useState([]);
@@ -67,9 +68,9 @@ const Clients = () => {
                         <TableCaption>A list of your recent agents.</TableCaption>
                         <TableHeader>
                             <TableRow>
-                                <TableHead className="text-title font-semibold text-lg">Agent Id</TableHead>
-                                <TableHead className="text-title font-semibold text-lg">Agent Name</TableHead>
-                                <TableHead className="text-title font-semibold text-lg">Agent Contact No</TableHead>
+                                <TableHead className="text-title font-semibold text-lg">Id</TableHead>
+                                <TableHead className="text-title font-semibold text-lg">Name</TableHead>
+                                <TableHead className="text-title font-semibold text-lg">Contact No</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -89,7 +90,9 @@ const Clients = () => {
                                             </CopyToClipboard>
                                         </TableCell>
                                         <TableCell className="font-medium">
+                                            <Link className="hover:text-primary hover:underline transition-all" href={`/dashboard/agents/${agent.id}`}>
                                             {agent.name}
+                                        </Link>
                                         </TableCell>
                                         <TableCell>{agent.contactNo}</TableCell>
                                     </TableRow>

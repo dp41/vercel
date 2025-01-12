@@ -15,6 +15,7 @@ const AddAgent = () => {
         defaultValues: {
             id: "",
             agentName: "",
+            state:'',
             agentContactNo: "",
         },
         mode: "onBlur",
@@ -83,6 +84,22 @@ const AddAgent = () => {
                                         <Input type="text" placeholder="Ex: John Doe" {...field} />
                                     </FormControl>
                                     <FormMessage>{form.formState.errors.agentName?.message}</FormMessage>
+                                </FormItem>
+                            )}
+                        />
+
+                        {/* Name field */}
+                        <FormField
+                            control={form.control}
+                            name="state"
+                            rules={{ required: "State is required" , pattern: { value: /^[a-zA-Z\s]+$/, message: "Name must contain only alphabetic characters" }}}
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Working State</FormLabel>
+                                    <FormControl>
+                                        <Input type="text" placeholder="Ex: Gujarat" {...field} />
+                                    </FormControl>
+                                    <FormMessage>{form.formState.errors.state?.message}</FormMessage>
                                 </FormItem>
                             )}
                         />
