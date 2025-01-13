@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import {checkAgentExistsById, saveAgentData} from "@/Handlers/handleDB";
 import {AuthProvider} from "@/context/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const AddAgent = () => {
     const { toast } = useToast();
@@ -52,7 +53,7 @@ const AddAgent = () => {
     // Function to copy the clientId to clipboard
 
     return (
-        <AuthProvider>
+        <ProtectedRoute>
         <div className="w-full p-4 flex justify-center">
             <div className="w-full sm:w-[500px] md:w-[600px] lg:w-[700px] xl:w-[800px] p-4">
                 <CardTitle className="text-3xl font-bold mb-4">Add New Agent</CardTitle>
@@ -137,7 +138,7 @@ const AddAgent = () => {
 
             </div>
         </div>
-        </AuthProvider>
+        </ProtectedRoute>
     );
 };
 

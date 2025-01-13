@@ -10,6 +10,7 @@ import {Calendar} from "@/components/ui/calendar";
 import {useRouter} from "next/navigation";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {AuthProvider} from "@/context/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const Page = () => {
     const [clientData, setClientData] = useState([]);
@@ -41,7 +42,7 @@ const Page = () => {
     }, []);
 
     return (
-        <AuthProvider>
+        <ProtectedRoute>
         <div className="p-6 space-y-6">
             {/* Header Section */}
             <div className="flex flex-wrap items-center justify-between gap-4">
@@ -162,7 +163,7 @@ const Page = () => {
                 </Button>
             </div>
         </div>
-        </AuthProvider>
+        </ProtectedRoute>
     );
 };
 

@@ -16,6 +16,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Loader from "@/components/Loader";
 import Link from "next/link";
 import {AuthProvider} from "@/context/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const Clients = () => {
     const [agents, setAgents] = useState([]);
@@ -47,7 +48,7 @@ const Clients = () => {
     };
 
     return (
-        <AuthProvider>
+        <ProtectedRoute>
         <div className="relative p-4">
             <CardTitle className="text-3xl font-bold mb-4">Agents</CardTitle>
 
@@ -109,7 +110,7 @@ const Clients = () => {
                 </div>
             )}
         </div>
-        </AuthProvider>
+        </ProtectedRoute>
     );
 };
 

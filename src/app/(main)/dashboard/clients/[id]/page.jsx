@@ -14,7 +14,8 @@ import {
 import { Button } from "@/components/ui/button"; // Replace with ShadCN Button
 import { Table, TableHeader, TableRow, TableCell, TableBody } from "@/components/ui/table";
 import {Avatar, AvatarFallback} from "@/components/ui/avatar";
-import {AuthProvider} from "@/context/AuthContext"; // ShadCN Table
+import {AuthProvider} from "@/context/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute"; // ShadCN Table
 
 
 const Page = () => {
@@ -54,7 +55,7 @@ const Page = () => {
     }
 
     return (
-        <AuthProvider>
+        <ProtectedRoute>
         <div className="p-6 min-h-screen">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
@@ -183,7 +184,7 @@ const Page = () => {
                 </div>
             </div>
         </div>
-        </AuthProvider>
+        </ProtectedRoute>
     );
 };
 

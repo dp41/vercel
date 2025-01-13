@@ -12,6 +12,7 @@ import html2canvas from "html2canvas";
 import Image from "next/image";
 import CreateInvoice from "@/components/CreateInvoice";
 import {AuthProvider} from "@/context/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 let roundoff;
 
@@ -138,7 +139,7 @@ const page = () => {
     }
 
     return (
-        <AuthProvider>
+        <ProtectedRoute>
         <div className="relative p-4 sm:p-6 lg:p-8">
             <CardTitle className="text-2xl sm:text-3xl font-bold mb-4">Generate Invoice</CardTitle>
             <>
@@ -402,7 +403,7 @@ const page = () => {
 
             </>
         </div>
-        </AuthProvider>
+        </ProtectedRoute>
     );
 };
 
