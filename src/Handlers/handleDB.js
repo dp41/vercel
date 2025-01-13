@@ -5,22 +5,21 @@ import {db, auth, onAuthStateChanged} from "@/lib/firebase";
 
 const getUserUID = () => {
     return new Promise((resolve, reject) => {
-        // Wait for Firebase Auth to initialize before calling currentUser
-        const user = auth.currentUser;
-        if (user) {
-            resolve(user.uid);
-            return;
-        }
-
-        // Otherwise, listen for auth state changes
+        // Listen for the auth state to change (this triggers once Firebase is initialized)
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            unsubscribe(); // Clean up listener
+            unsubscribe(); // Clean up listener after it fires
             if (user) {
                 resolve(user.uid);
             } else {
                 reject(new Error("No user is logged in"));
             }
         });
+
+        // If Firebase has already initialized, the user state is available immediately
+        const user = auth.currentUser;
+        if (user) {
+            resolve(user.uid);
+        }
     });
 };
 
