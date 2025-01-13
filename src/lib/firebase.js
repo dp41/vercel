@@ -17,28 +17,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth  = getAuth(app);
 
-const getUserUID = () => {
-    return new Promise((resolve, reject) => {
-        // Wait for Firebase Auth to initialize before calling currentUser
-        const user = auth.currentUser;
-        if (user) {
-            resolve(user.uid);
-            return;
-        }
 
-        // Otherwise, listen for auth state changes
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            unsubscribe(); // Clean up listener
-            if (user) {
-                resolve(user.uid);
-            } else {
-                reject(new Error("No user is logged in"));
-            }
-        });
-    });
-};
-
-export {db, auth, onAuthStateChanged, getUserUID};
+export {db, auth, onAuthStateChanged};
 
 
 

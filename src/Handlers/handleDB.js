@@ -1,10 +1,30 @@
 // Initialize Firebase
 
 import {collection, getDocs, doc, getDoc, setDoc, query, orderBy, arrayUnion, updateDoc, serverTimestamp,limit} from "firebase/firestore";
-import {db, auth, onAuthStateChanged, getUserUID} from "@/lib/firebase";
+import {db, auth, onAuthStateChanged} from "@/lib/firebase";
+
+const getUserUID = () => {
+    return new Promise((resolve, reject) => {
+        // Wait for Firebase Auth to initialize before calling currentUser
+        const user = auth.currentUser;
+        if (user) {
+            resolve(user.uid);
+            return;
+        }
+
+        // Otherwise, listen for auth state changes
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            unsubscribe(); // Clean up listener
+            if (user) {
+                resolve(user.uid);
+            } else {
+                reject(new Error("No user is logged in"));
+            }
+        });
+    });
+};
 
 const userUID = await getUserUID();
-
 // Check if Booking Exists by docketNo
 export const checkBookingExistsByDocketNo = async (docketNo) => {
     const bookingRef = doc(db, `users/${userUID}/bookings`, docketNo);

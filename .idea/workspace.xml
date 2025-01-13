@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="6070c5a5-81d1-4283-a0bd-1cff1637cdc7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handlers/handleDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/handleDB.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/AuthContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/firebase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,11 +56,11 @@
       <recent name="$PROJECT_DIR$/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/context" />
       <recent name="$PROJECT_DIR$/src/app/(main)/dashboard/clients/[id]" />
       <recent name="$PROJECT_DIR$/src/app/(main)/dashboard/clients/client-details/[id]" />
       <recent name="$PROJECT_DIR$/src/app/(main)/dashboard" />
       <recent name="$PROJECT_DIR$/src/app/(main)/dashboard/[id]" />
-      <recent name="$PROJECT_DIR$/src/app/(main)" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -119,6 +125,8 @@
       <workItem from="1736507973722" duration="1958000" />
       <workItem from="1736524709544" duration="21000" />
       <workItem from="1736693607731" duration="707000" />
+      <workItem from="1736705847681" duration="916000" />
+      <workItem from="1736757916471" duration="2216000" />
     </task>
     <servers />
   </component>

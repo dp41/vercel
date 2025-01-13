@@ -1,15 +1,35 @@
 import { NextResponse } from "next/server";
+import { initializeApp, applicationDefault } from "firebase-admin/app";
+import {auth} from "@/lib/firebase";
 
-export function middleware(request) {
+const app = initializeApp({
+    credential: applicationDefault(),
+});
+
+
+export async function middleware(request) {
     const token = request.cookies.get("token");
     const url = request.nextUrl.clone();
 
-    if (!token && url.pathname.startsWith("/dashboard")) {
+    if (!token) {
+        // Redirect unauthenticated users from protected routes to login
+        if (url.pathname.startsWith("/dashboard")) {
+            url.pathname = "/login";
+            return NextResponse.redirect(url);
+        }
+        return NextResponse.next();
+    }
+
+    try {
+        // Verify the token with Firebase Admin SDK
+        await auth.verifyIdToken(token);
+        return NextResponse.next();
+    } catch (error) {
+        console.error("Token verification failed:", error);
+        // If token is invalid or expired, redirect to login
         url.pathname = "/login";
         return NextResponse.redirect(url);
     }
-
-    return NextResponse.next();
 }
 
 export const config = {
@@ -25,6 +45,6 @@ export const config = {
         '/dashboard/agents/add-new-agent',
         '/dashboard/quotation',
         '/dashboard/payment-records',
-        '/dashboard/tracking'
-    ]
+        '/dashboard/tracking',
+    ],
 };
