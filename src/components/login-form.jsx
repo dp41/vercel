@@ -13,9 +13,7 @@ import {useState} from "react";
 import {useRouter} from "next/navigation";
 import {useToast} from "@/hooks/use-toast";
 import Loader from "@/components/Loader";
-import {auth} from "@/lib/firebase";
-import {  signInWithEmailAndPassword   } from 'firebase/auth';
-import {useAuth} from "@/lib/AuthContext";
+import {signIn} from "@/lib/auth";
 
 export function LoginForm() {
 
@@ -32,15 +30,13 @@ export function LoginForm() {
         setIsLoading(true);
         try {
             console.log("Connecting to Firebase...");
-            signInWithEmailAndPassword(auth, email, password)
-                .then(async (userCredential) => {
-                    const user = userCredential.user;
-                    const token = await user.getIdToken();
-                    document.cookie = `token=${token}; isLoggedIn=true; path=/; max-age=43200 HttpOnly`;
-                    router.push('/dashboard');
-                }) .catch((error) => {
-                alert(error.message);
-            });
+            const user = await signIn(email,password);
+
+            if(user){
+                const token = await user.getIdToken();
+                document.cookie = `token=${token}; isLoggedIn=true; path=/; max-age=43200 HttpOnly`;
+                router.push('/dashboard');
+            }
         } catch (error) {
             console.error('Error logging in:', error);
             setError('An error occurred while logging in');

@@ -11,6 +11,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import Image from "next/image";
 import CreateInvoice from "@/components/CreateInvoice";
+import {AuthProvider} from "@/context/AuthContext";
 
 let roundoff;
 
@@ -137,6 +138,7 @@ const page = () => {
     }
 
     return (
+        <AuthProvider>
         <div className="relative p-4 sm:p-6 lg:p-8">
             <CardTitle className="text-2xl sm:text-3xl font-bold mb-4">Generate Invoice</CardTitle>
             <>
@@ -400,6 +402,7 @@ const page = () => {
 
             </>
         </div>
+        </AuthProvider>
     );
 };
 

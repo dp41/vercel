@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
-import { initializeApp, applicationDefault } from "firebase-admin/app";
-import {auth} from "@/lib/firebase";
+import {initializeApp, getApps, getApp, applicationDefault} from "firebase-admin/app";
+import { getAuth } from "firebase-admin/auth";
 
-const app = initializeApp({
-    credential: applicationDefault(),
-});
+// Initialize Firebase Admin SDK only once
+const app = !getApps().length
+    ? initializeApp({
+        credential: applicationDefault(),
+    })
+    : getApp();
 
+// Get Auth instance from Firebase Admin
+const adminAuth = getAuth(app);
 
 export async function middleware(request) {
     const token = request.cookies.get("token");
@@ -22,7 +27,7 @@ export async function middleware(request) {
 
     try {
         // Verify the token with Firebase Admin SDK
-        await auth.verifyIdToken(token);
+        await adminAuth.verifyIdToken(token);
         return NextResponse.next();
     } catch (error) {
         console.error("Token verification failed:", error);

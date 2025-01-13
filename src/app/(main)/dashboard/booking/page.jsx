@@ -21,6 +21,7 @@ import {
 } from "@/Handlers/handleDB";
 import Loader from "@/components/Loader";
 import {profitModel} from "@/models/profitModel";
+import {AuthProvider} from "@/context/AuthContext";
 
 
 const NewBooking = () => {
@@ -252,6 +253,7 @@ const NewBooking = () => {
 
 
     return (
+        <AuthProvider>
         <div className="container mx-auto px-4 py-8">
             <h1 className="text-2xl font-bold mb-6">New Booking</h1>
             <Form {...form}>
@@ -1357,6 +1359,7 @@ const NewBooking = () => {
                 <Loader message='It will take some time to complete the booking. Please do not refresh the page.'/>
             )}
         </div>
+        </AuthProvider>
     )
 }
 

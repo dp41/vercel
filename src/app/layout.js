@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import {AuthProvider} from "@/context/AuthContext";
 
 //font family
 const geistSans = Geist({
@@ -22,6 +23,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+      <AuthProvider>
     <html lang="en">
     <head>
       <link rel="icon" href="/Images/logo.png" />
@@ -31,5 +33,6 @@ export default function RootLayout({ children }) {
         {children}
       </body>
     </html>
+      </AuthProvider>
   );
 }

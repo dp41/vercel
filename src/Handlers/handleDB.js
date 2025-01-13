@@ -24,7 +24,9 @@ const getUserUID = () => {
     });
 };
 
-const userUID = await getUserUID();
+
+const userUID = getUserUID();
+
 // Check if Booking Exists by docketNo
 export const checkBookingExistsByDocketNo = async (docketNo) => {
     const bookingRef = doc(db, `users/${userUID}/bookings`, docketNo);

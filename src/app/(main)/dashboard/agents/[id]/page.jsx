@@ -35,6 +35,7 @@ import {
     CommandList,
 } from "@/components/ui/command";
 import { fetchAgentDataByAgentId, updateAgentData } from "@/Handlers/handleDB";
+import {AuthProvider} from "@/context/AuthContext";
 
 const Page = () => {
     const { id } = useParams();
@@ -94,6 +95,7 @@ const Page = () => {
     if (isLoading) return <Loader message="Loading..." />;
 
     return (
+        <AuthProvider>
         <div className="p-6 min-h-screen">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="col-span-1 flex flex-col gap-6">
@@ -291,6 +293,7 @@ const Page = () => {
                 </div>
             </div>
         </div>
+        </AuthProvider>
     );
 };
 

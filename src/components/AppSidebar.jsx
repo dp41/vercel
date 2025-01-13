@@ -27,6 +27,7 @@ import {signOut } from "firebase/auth";
 import { LogOut } from 'lucide-react';
 import {auth, onAuthStateChanged} from "@/lib/firebase";
 import {useRouter} from "next/navigation";
+import {logOut} from "@/lib/auth";
 
 export function AppSidebar({ setIsSelectedItem, isSidebarOpen, toggleSidebar }) {
 
@@ -87,7 +88,7 @@ export function AppSidebar({ setIsSelectedItem, isSidebarOpen, toggleSidebar }) 
     const handleLogout = async () => {
         try {
             // Sign out the user first
-            await signOut(auth);
+            await logOut();
 
             // Clear authentication-related cookies (replace 'isLoggedIn' with your actual cookie names)
             document.cookie = "isLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
