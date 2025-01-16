@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loader from "@/components/Loader";
 import { auth } from "@/lib/firebase";
+import { AuthProvider } from "@/lib/AuthContext"; // Adjust path as needed
 
 export default function Home() {
     const [isLoading, setIsLoading] = useState(true);
@@ -27,10 +28,12 @@ export default function Home() {
     }, [router]);
 
     return (
+        <AuthProvider>
             <main className="flex min-h-screen flex-col items-center justify-center p-24">
                 {isLoading && (
                     <Loader message="Checking authentication... Please wait." />
                 )}
             </main>
+        </AuthProvider>
     );
 }

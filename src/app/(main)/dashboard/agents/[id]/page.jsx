@@ -4,6 +4,9 @@ import { useParams } from "next/navigation";
 import Loader from "@/components/Loader";
 import {
     MessageSquare,
+    BarChart2,
+    MapPin,
+    EllipsisVertical,
     UserPen,
     ChevronsUpDown,
     CheckIcon,
@@ -32,7 +35,6 @@ import {
     CommandList,
 } from "@/components/ui/command";
 import { fetchAgentDataByAgentId, updateAgentData } from "@/Handlers/handleDB";
-import ProtectedRoute from "@/components/ProtectedRoute";
 
 const Page = () => {
     const { id } = useParams();
@@ -92,7 +94,6 @@ const Page = () => {
     if (isLoading) return <Loader message="Loading..." />;
 
     return (
-        <ProtectedRoute>
         <div className="p-6 min-h-screen">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="col-span-1 flex flex-col gap-6">
@@ -290,7 +291,6 @@ const Page = () => {
                 </div>
             </div>
         </div>
-        </ProtectedRoute>
     );
 };
 

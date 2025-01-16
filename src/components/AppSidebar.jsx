@@ -27,7 +27,8 @@ import {signOut } from "firebase/auth";
 import { LogOut } from 'lucide-react';
 import {auth, onAuthStateChanged} from "@/lib/firebase";
 import {useRouter} from "next/navigation";
-import {logOut} from "@/lib/auth";
+import {useAuth} from "@/lib/AuthContext";
+import Loader from "@/components/Loader";
 
 export function AppSidebar({ setIsSelectedItem, isSidebarOpen, toggleSidebar }) {
 
@@ -62,6 +63,13 @@ export function AppSidebar({ setIsSelectedItem, isSidebarOpen, toggleSidebar }) 
     const [selectedItem, setSelectedItem] = useState(null);
     const [userEmail, setUserEmail] = useState(null);
     const router = useRouter();
+    const {user, loading} = useAuth();
+
+    useEffect(() => {
+        if (!loading && !user) {
+            router.push('/login');
+        }
+    }, [user, loading, router]);
 
     useEffect(() => {
         // Listen for authentication state changes
@@ -88,10 +96,10 @@ export function AppSidebar({ setIsSelectedItem, isSidebarOpen, toggleSidebar }) 
     const handleLogout = async () => {
         try {
             // Sign out the user first
-            await logOut();
+            await signOut(auth);
 
             // Clear authentication-related cookies (replace 'isLoggedIn' with your actual cookie names)
-            document.cookie = "isLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
+            document.cookie = `authToken=''; Path=/; HttpOnly; Secure;`;
 
             // Clear email state
             setUserEmail(null);
@@ -113,6 +121,10 @@ export function AppSidebar({ setIsSelectedItem, isSidebarOpen, toggleSidebar }) 
         setSelectedItem(item.path);
         setIsSelectedItem(item.path); // Optional: Set the item path to the parent component
     };
+
+    if (loading) {
+        return <Loader message={'Please wait Checking authentication...'} />
+    }
 
     return (
         <Sidebar className="h-screen overflow-hidden bg-gray-100">

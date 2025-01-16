@@ -5,26 +5,26 @@ import {db, auth, onAuthStateChanged} from "@/lib/firebase";
 
 const getUserUID = () => {
     return new Promise((resolve, reject) => {
-        // Listen for the auth state to change (this triggers once Firebase is initialized)
+        // Wait for Firebase Auth to initialize before calling currentUser
+        const user = auth.currentUser;
+        if (user) {
+            resolve(user.uid);
+            return;
+        }
+
+        // Otherwise, listen for auth state changes
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            unsubscribe(); // Clean up listener after it fires
+            unsubscribe(); // Clean up listener
             if (user) {
                 resolve(user.uid);
             } else {
                 reject(new Error("No user is logged in"));
             }
         });
-
-        // If Firebase has already initialized, the user state is available immediately
-        const user = auth.currentUser;
-        if (user) {
-            resolve(user.uid);
-        }
     });
 };
 
-
-const userUID = getUserUID();
+const userUID = await getUserUID();
 
 // Check if Booking Exists by docketNo
 export const checkBookingExistsByDocketNo = async (docketNo) => {

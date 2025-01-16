@@ -11,11 +11,21 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
+import {useAuth} from "@/lib/AuthContext";
+import Loader from "@/components/Loader";
 
 const Layout = ({ children }) => {
     const pathname = usePathname();  // Get pathname using usePathname
     const router = useRouter();  // Use the router hook for client-side navigation
     const [breadcrumbs, setBreadcrumbs] = useState([]);
+    const {user, loading} = useAuth();
+
+    useEffect(() => {
+        if (!loading && !user) {
+            router.push('/login');
+        }
+    }, [user, loading, router]);
+
 
     useEffect(() => {
         if (pathname) {
@@ -43,6 +53,9 @@ const Layout = ({ children }) => {
         router.push(path);   // Use router.push for client-side navigation
     };
 
+    if (loading) {
+        return <Loader message={'Please wait...'} />
+    }
     return (
         <SidebarProvider>
             <AppSidebar  setIsSelectedItem={handleMenuItemClick} />

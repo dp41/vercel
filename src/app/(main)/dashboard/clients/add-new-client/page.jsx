@@ -7,8 +7,6 @@ import { CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import {checkClientExistsById, saveClientData} from "@/Handlers/handleDB";
-import {AuthProvider} from "@/context/AuthContext";
-import ProtectedRoute from "@/components/ProtectedRoute";
 
 const AddNewClient = () => {
     const { toast } = useToast();
@@ -56,7 +54,6 @@ const AddNewClient = () => {
     // Function to copy the clientId to clipboard
 
     return (
-        <ProtectedRoute>
         <div className="w-full p-4 flex justify-center">
             <div className="w-full sm:w-[500px] md:w-[600px] lg:w-[700px] xl:w-[800px] p-4">
                 <CardTitle className="text-3xl font-bold mb-4">Add New Client</CardTitle>
@@ -204,7 +201,6 @@ const AddNewClient = () => {
 
             </div>
         </div>
-        </ProtectedRoute>
     );
 };
 
